@@ -534,7 +534,7 @@ response_mt = {
 local function handler(self, request)
 
     if self.hooks.before_routes ~= nil then
-        self.hooks.before_dispatch(self, request)
+        self.hooks.before_routes(self, request)
     end
 
     local format = 'html'
@@ -846,6 +846,7 @@ end
 local function set_hook(self, name, sub)
     if sub == nil or type(sub) == 'function' then
         self.hooks[ name ] = sub
+        return self
     end
     errorf("Wrong type for hook function: %s", type(sub))
 end
