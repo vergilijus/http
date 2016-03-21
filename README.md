@@ -1,4 +1,4 @@
-# http - a [Tarantool][] rock for an HTTP client and a server
+# http - a [Tarantool][] rock for an HTTP client and a server - fork by vergilijus.
 
 ## Getting Started
 
@@ -11,7 +11,7 @@
 Clone repository and then build it using CMake:
 
 ``` bash
-git clone https://github.com/tarantool/http.git
+git clone https://github.com/vergilijus/http.git
 cd http && cmake . -DCMAKE_BUILD_TYPE=RelWithDebugInfo
 make
 make install
@@ -20,7 +20,7 @@ make install
 You can also use LuaRocks:
 
 ``` bash
-luarocks install https://raw.githubusercontent.com/tarantool/http/master/http-scm-1.rockspec --local
+luarocks install https://raw.githubusercontent.com/vergilijus/http/master/http-scm-1.rockspec --local
 ```
 
 See [tarantool/rocks][TarantoolRocks] for LuaRocks configuration details.
