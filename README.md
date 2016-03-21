@@ -1,7 +1,5 @@
 # http - a [Tarantool][] rock for an HTTP client and a server
 
-[![Build Status](https://travis-ci.org/tarantool/http.png?branch=master)](https://travis-ci.org/tarantool/http)
-
 ## Getting Started
 
 ### Prerequisites
