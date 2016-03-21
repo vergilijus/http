@@ -1,12 +1,12 @@
 package = 'http'
 version = 'scm-1'
 source  = {
-    url    = 'git://github.com/tarantool/http.git',
+    url    = 'git://github.com/vergilijus/http.git',
     branch = 'master',
 }
 description = {
-    summary  = "Tarantool module for HTTP client/server.",
-    homepage = 'https://github.com/tarantool/http/',
+    summary  = "Tarantool module for HTTP client/server - fork by vergilijus.",
+    homepage = 'https://github.com/vergilijus/http/',
     license  = 'BSD',
 }
 dependencies = {
