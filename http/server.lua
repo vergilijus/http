@@ -561,7 +561,11 @@ local function handler(self, request)
 
     local response = nil
     if request_override ~= nil then
-        response = r.endpoint.sub(request_override)
+        if request_override.response ~= nil then
+            response = request_override.response
+        else
+            response = r.endpoint.sub(request_override)
+        end
     else
         response = r.endpoint.sub(request)
     end
