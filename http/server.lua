@@ -532,9 +532,8 @@ response_mt = {
 }
 
 local function handler(self, request)
-
     if self.hooks.before_routes ~= nil then
-        self.hooks.before_routes(self, request)
+        request = self.hooks.before_routes(self, request)
     end
 
     local format = 'html'
@@ -543,7 +542,6 @@ local function handler(self, request)
     if pformat ~= nil then
         format = pformat
     end
-
 
     local r = self:match(request.method, request.path)
     if r == nil then
@@ -556,11 +554,23 @@ local function handler(self, request)
     request.httpd    = self
     request.tstash   = stash
 
-    local resp = r.endpoint.sub(request)
-    if self.hooks.after_dispatch ~= nil then
-        self.hooks.after_dispatch(request, resp)
+    local request_override = nil
+    if self.hooks.before_dispatch ~= nil then
+        request_override = self.hooks.before_dispatch(self, request)
     end
-    return resp
+
+    local response = nil
+    if request_override ~= nil then
+        response = r.endpoint.sub(request_override)
+    else
+        response = r.endpoint.sub(request)
+    end
+
+    if self.hooks.after_dispatch ~= nil then
+        response = self.hooks.after_dispatch(self, request, request_override, response)
+    end
+
+    return response
 end
 
 local function normalize_headers(hdrs)
