@@ -585,7 +585,7 @@ local function handler(self, request)
     end
 
     if not status and not response and self.hooks.after_handler_error then
-        response = self.hooks.after_handler_error(self, request, request_override, status, err)
+        response = self.hooks.after_handler_error(self, request, request_override, err)
     end
 
     if self.hooks.after_dispatch ~= nil then
