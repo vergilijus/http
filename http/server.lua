@@ -573,15 +573,19 @@ local function handler(self, request)
         request_override = self.hooks.before_dispatch(self, request)
     end
 
-    local response = nil
+    local response, status, err
     if request_override ~= nil then
         if request_override.response ~= nil then
             response = request_override.response
         else
-            response = r.endpoint.sub(request_override)
+            status, err = pcall(function() response = r.endpoint.sub(request_override) end)
         end
     else
-        response = r.endpoint.sub(request)
+        status, err = pcall(function() response = r.endpoint.sub(request) end)
+    end
+
+    if not status and not response and self.hooks.after_handler_error then
+        response = self.hooks.after_handler_error(self, request, request_override, status, err)
     end
 
     if self.hooks.after_dispatch ~= nil then
