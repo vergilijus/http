@@ -568,7 +568,7 @@ local function handler(self, request)
     request.httpd    = self
     request.tstash   = stash
 
-    local request_override = nil
+    local request_override
     if self.hooks.before_dispatch ~= nil then
         request_override = self.hooks.before_dispatch(self, request)
     end
