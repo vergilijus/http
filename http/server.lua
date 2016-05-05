@@ -990,7 +990,7 @@ local function add_route(self, opts, sub)
 
     opts.method = string.upper(opts.method)
 
-    local methods = { 'GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT' }
+    local methods = { 'GET', 'POST', 'PUT', 'DELETE', 'PATCH' }
     local method = 'ANY'
     for _, m in pairs(methods) do
         if opts.method == m then
